@@ -1,3 +1,5 @@
 <?php
-$conn=mysqli_connect("localhost","root","","schoolmgt");
+$conn = mysqli_connect("localhost", "root", "", "emplyoeedetail");
+
 ?>
+
