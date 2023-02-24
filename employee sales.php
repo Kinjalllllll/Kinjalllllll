@@ -1,0 +1,32 @@
+<?php
+include "config.php";
+$sql = "select * from `employoee` where `department`='sales'";
+$res =mysqli_query($con,$sql);
+
+?>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>name</th>
+        <th>joining date</th>
+        <th>risiginin date</th>
+        <th>leaves</th>
+        <th>salary</th>
+        <th>department</th>
+</tr>
+<?php
+    while($row = mysqli_fetch_array($res))
+    {
+        $i++;
+        ?>
+        <tr>
+            <td><?php echo $i; ?></td>
+            <td><?php echo $row['name']; ?></td>
+			<td><?php echo $row['joining_date'];?></td>
+			<td><?php echo $row['resing_date'];?></td>
+			<td><?php echo $row['department'];?></td>
+			<td><?php echo $row['salary'];?></td>
+			<td><?php echo $row['emp_leave'];?></td>
+		</tr>
+    }
+	
