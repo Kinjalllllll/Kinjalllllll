@@ -1,24 +1,25 @@
+
 <?php
-if(isset($_POST['txtno1']))
+if(isset($_POST['btnlogin']))
 {
 	include "config.php";
 	$num = $_POST['txtno1'];
 	$num1 = $_POST['txtno2'];
-	$sql = "select * from `admin` where `username`='$num' and `password`='$num1' and `active`='y'";
+	$sql = "select * from `admin` where `username`='$num' and `password`='$num1'";
 	$res = mysqli_query($conn,$sql);
+    $data = mysqli_fetch_assoc($res);
 	$count = mysqli_num_rows($res);
-	if($count== 1){
+	if($count > 0)
+  {
 		header("location:home.php");
-		
 	}
 	else
 	{
-		echo "invalid user name or password";
+		echo "invalid username or password";
 		
 	}
 }
 ?>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -30,7 +31,7 @@ if(isset($_POST['txtno1']))
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href ="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -44,9 +45,9 @@ if(isset($_POST['txtno1']))
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="index3.html" method="post">
+      <form action="index.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" name="txtno1" class="form-control" placeholder="user name">
+          <input type="text" class="form-control" placeholder="user name" name="txtno1" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -54,7 +55,7 @@ if(isset($_POST['txtno1']))
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="txtno2" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="txtno2" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -64,13 +65,13 @@ if(isset($_POST['txtno1']))
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-       
+             
+              </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="btnlogin" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
@@ -83,7 +84,7 @@ if(isset($_POST['txtno1']))
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        
+        <a href="register.html" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->
